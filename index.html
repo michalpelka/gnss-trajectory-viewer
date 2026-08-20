@@ -49,9 +49,9 @@
       Drop .nmea files/folder here or click to choose
       <input id="fileInput" type="file" multiple accept=".nmea,.txt" />
     </label>
-    <label id="folderDropzone" class="dropzone" style="border-style:solid;">
+    <label id="folderDropzone" class="dropzone" for="folderInput" style="border-style:solid;">
       Choose folder
-      <input id="folderInput" type="file" webkitdirectory directory multiple style="display:none" />
+      <input id="folderInput" type="file" webkitdirectory directory multiple />
     </label>
     <button id="clearBtn">Clear</button>
     <div id="stats"></div>
@@ -256,16 +256,11 @@ function collectEntryFiles(entry) {
 }
 
 const primaryDropzone = document.getElementById("fileDropzone");
-const folderDropzone = document.getElementById("folderDropzone");
 const fileInput = document.getElementById("fileInput");
 const folderInput = document.getElementById("folderInput");
 
 fileInput.addEventListener("change", (e) => handleFiles(e.target.files));
 folderInput.addEventListener("change", (e) => handleFiles(e.target.files));
-folderDropzone.addEventListener("click", (e) => {
-  e.preventDefault();
-  folderInput.click();
-});
 
 ["dragenter", "dragover"].forEach((evt) =>
   primaryDropzone.addEventListener(evt, (e) => {
